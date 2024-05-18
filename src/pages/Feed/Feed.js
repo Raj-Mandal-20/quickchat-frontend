@@ -11,6 +11,7 @@ import ErrorHandler from "../../components/ErrorHandler/ErrorHandler";
 import "./Feed.css";
 
 const REACT_APP_API_KEY = "https://quickchat-backend-c7n1.onrender.com";
+// const REACT_APP_API_KEY = "http://localhost:5000";
 
 class Feed extends Component {
   state = {
@@ -106,7 +107,7 @@ class Feed extends Component {
 
     // console.log(this.props.token);3.023
 
-    fetch("https://quickchat-backend-c7n1.onrender.com/feed/posts?page=" + page, {
+    fetch(`${REACT_APP_API_KEY}/feed/posts?page=` + page, {
       headers: {
         Authorization: "Bearer " + this.props.token,
       },
@@ -134,7 +135,7 @@ class Feed extends Component {
 
   statusUpdateHandler = (event) => {
     event.preventDefault();
-    fetch("https://quickchat-backend-c7n1.onrender.com/feed/ustatus", {
+    fetch(`${REACT_APP_API_KEY}/feed/ustatus`, {
       method : 'PUT',
       headers : {
         Authorization : 'Bearer '+this.props.token,
@@ -189,10 +190,10 @@ class Feed extends Component {
     formData.append("content", postData.content);
     formData.append("image", postData.image);
 
-    let url = "https://quickchat-backend-c7n1.onrender.com/";
+    let url = `${REACT_APP_API_KEY}/feed/post`;
     let method = "POST";
     if (this.state.editPost) {
-      url = "https://quickchat-backend-c7n1.onrender.com/" + this.state.editPost._id;
+      url = `${REACT_APP_API_KEY}/feed/post/` + this.state.editPost._id;
       method = "PUT";
     }
 
@@ -251,7 +252,7 @@ class Feed extends Component {
 
   deletePostHandler = (postId) => {
     this.setState({ postsLoading: true });
-    fetch("https://quickchat-backend-c7n1.onrender.com/feed/post/" + postId, {
+    fetch(`${REACT_APP_API_KEY}/feed/post/` + postId, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + this.props.token,

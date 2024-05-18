@@ -15,6 +15,7 @@ import { apiKey } from './config';
 
 
 const REACT_APP_API_KEY = "https://quickchat-backend-c7n1.onrender.com";
+// const REACT_APP_API_KEY = "http://localhost:5000";
 
 class App extends Component {
   state = {
